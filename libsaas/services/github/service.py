@@ -4,7 +4,7 @@ from libsaas import http
 from libsaas.filters import auth
 from libsaas.services import base
 
-from . import authorizations, gists, issues, repos, users
+from . import authorizations, gists, issues, notifications, repos, users
 
 
 class GitHub(base.Resource):
@@ -79,6 +79,15 @@ class GitHub(base.Resource):
         authenticated user.
         """
         return issues.Issues(self)
+
+    @base.resource(notifications.Notifications)
+    def notifications(self):
+        """
+        Return the resource corresponding to all the notifications of the
+        authenticated user.
+        """
+        return notifications.Notifications(self)
+
 
     @base.resource(repos.Repo)
     def repo(self, user, repo):

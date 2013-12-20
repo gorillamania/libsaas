@@ -469,6 +469,12 @@ class GithubTestCase(unittest.TestCase):
         self.service.authorization(1).delete()
         self.expect('DELETE', '/authorizations/1')
 
+    def test_notifications(self):
+        self.service.notifications().get()
+        self.expect('GET', '/notifications')
+        # TODO : The rest of the notificatons API
+
+
     def test_unicode(self):
         # try an unicode name
         self.service.repo('myuser', b'\xce\xbb'.decode('utf-8')).get()
